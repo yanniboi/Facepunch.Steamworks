@@ -29,7 +29,7 @@ namespace Steamworks
 			Dispatch.Install<SteamRemotePlaySessionConnected_t>( x => OnSessionConnected?.Invoke( x.SessionID ), server );
 			Dispatch.Install<SteamRemotePlaySessionDisconnected_t>( x => OnSessionDisconnected?.Invoke( x.SessionID ), server );
 		}
-		
+
 		/// <summary>
 		/// Invoked when a session is connected.
 		/// </summary>
@@ -50,6 +50,12 @@ namespace Steamworks
 		/// IsValid will return <see langword="false"/> if it's out of bounds
 		/// </summary>
 		public static RemotePlaySession GetSession( int index ) => (RemotePlaySession) Internal.GetSessionID( index ).Value;
+
+		/// <summary>
+		/// Get the currently connected Steam Remote Play session ID at the specified index.
+		/// IsValid will return <see langword="false"/> if it's out of bounds
+		/// </summary>
+		public static ulong GetSessionSteamId( ulong index ) => (ulong) Internal.GetSessionSteamID( (RemotePlaySessionID_t) index ).Value;
 
 
 		/// <summary>
